@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('contact_number')->nullable();
             $table->string('address')->nullable();
             $table->boolean('is_admin')->nullable()->default('0');
+            $table->string('role')->nullable()->default('User');
             $table->string('password');
             $table->tinyInteger('status')->default('1');
             $table->string('no_of_report_generate')->nullable();

@@ -133,7 +133,7 @@
             <div class="col text-center">
                 
                 <button type="submit" class="btn btn-info">Save</button>&nbsp;
-                  <button type="submit" class="btn btn-default">Cancel</button>
+                  
            
             </div>
             

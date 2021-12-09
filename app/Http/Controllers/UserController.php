@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -38,77 +39,128 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => 'required',
-            'address_name' => 'required',
-            'address_line_1' => 'required',
-            'city_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'contact_number' => 'required',
+            'password' => 'required',
             'status' => 'required',
-            'is_default' => 'required',
         ]);
 
-        User::create($request->all());
+        if($request->is_admin == 2){
+            $isadmin = '1';
+            $role = 'Superadmin';
+        }elseif ($request->is_admin == 1) {
+            $isadmin = '1';
+            $role = 'Agent';
+        }else{
+            $isadmin = '0';
+            $role = 'User';
+        }
+           
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'contact_number' => $request->contact_number,
+            'is_admin' => $isadmin,
+            'role' => $role,
+            'status' => $request->status,
+        ]);
 
-        return redirect()->route('users.index')->with('success', 'User Address created successfully.');
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\UserController  $userAddress
+     * @param  \App\Models\User  $users
      * @return \Illuminate\Http\Response
      */
-    public function show(UserController $userAddress)
+    public function show(User $users)
     {
-        return view('admin.users.show', compact('userAddress'));
+        return view('admin.users.show', compact('users'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\UserController  $userAddress
+     * @param  \App\Models\User  $users
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserController $userAddress)
+    public function edit(User $user)
     {
-        $users = User::all();
-        $cities = User::all();
-        return view('admin.users.edit', compact('userAddress','users','cities'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserController  $userAddress
+     * @param  \App\Models\User  $users
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserController $userAddress)
+    public function update(Request $request, User $user)
     {
         $request->validate([
-            'user_id' => 'required',
-            'address_name' => 'required',
-            'address_line_1' => 'required',
-            'city_id' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'contact_number' => 'required',
             'status' => 'required',
-            'is_default' => 'required',
         ]);
         
-        $userAddress->update($request->all());
-
-        return redirect()->route('users.index')->with('success', 'User Address updated successfully');
+        if($request->is_admin == 2){
+            $isadmin = '1';
+            $role = 'Superadmin';
+        }elseif ($request->is_admin == 1) {
+            $isadmin = '1';
+            $role = 'Agent';
+        }else{
+            $isadmin = '0';
+            $role = 'User';
+        }
+        
+       // $user->update($request->all());
+        $zone = User::find($user->id);
+        $zone->name = $request->input('name');
+        $zone->email = $request->input('email');
+        $zone->contact_number = $request->input('contact_number');
+        $zone->status = $request->input('status');
+        $zone->no_of_report_generate = $request->input('no_of_report_generate');
+        $zone->fcm_id = $request->input('fcm_id');
+        $zone->is_admin = $isadmin;
+        $zone->role = $role;
+        $zone->update();
+        
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\UserController  $userAddress
+     * @param  \App\Models\User  $users
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserController $userAddress)
+    
+    public function reset_password(Request $request)
     {
-        $userAddress->delete();
+        $request->validate([
+            'password' => 'required',
+        ]);
         
-        return redirect()->route('users.index')
-            ->with('success', 'User Address deleted successfully');
+       // $user->update($request->all());
+        $zone = User::find($request->input('id'));
+        $zone->password = Hash::make($request->input('password'));
+        $zone->update();
+        
+        return redirect()->route('users.index')->with('success', 'User Password Reset successfully');
+    }
+    
+    
+    
+    public function destroy(User $user)
+    {
+        $user->delete();
+        
+        return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }
 }

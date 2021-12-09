@@ -18,7 +18,7 @@
         </div>
     @endif
         
-        <form class="form-horizontal" action="{{ route('user_address.store') }}" method="POST">
+        <form class="form-horizontal" action="{{ route('users.store') }}" method="POST">
              @csrf
         <div class="row">
             <div class="col-sm-6">
@@ -30,58 +30,35 @@
                     <!-- form start -->
                    
                       <div class="card-body">
-                        <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">Select User</label>
-                          <div class="col-sm-10">
-                              <select name="user_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
-                                <option value="">Select User</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                              </select>
-                          </div>
-                        </div>
-                          
                         
                         <div class="form-group row">
-                          <label class="col-sm-2 col-form-label">Address Name</label>
+                          <label class="col-sm-2 col-form-label">User Name</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="address_name" placeholder="Address Name">
+                            <input type="text" class="form-control" name="name" placeholder="User Name">
                           </div>
                         </div>
                           
                         <div class="form-group row">
-                          <label class="col-sm-2 col-form-label">Address Line 1</label>
+                          <label class="col-sm-2 col-form-label">Email</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="address_line_1" placeholder="Email">
+                            <input type="email" class="form-control" name="email" placeholder="Email">
                           </div>
                         </div>
                           
                         <div class="form-group row">
-                          <label class="col-sm-2 col-form-label">Address Line 2</label>
+                          <label class="col-sm-2 col-form-label">Contact Number</label>
                           <div class="col-sm-10">
-                              <input type="text" class="form-control" name="address_line_2" placeholder="Address Line 2">
+                              <input type="text" class="form-control" name="contact_number" placeholder="Contact Number">
                           </div>
                         </div>
                           
-                        <div class="form-group row">
-                          <label class="col-sm-2 col-form-label">Address Line 3</label>
+                          <div class="form-group row">
+                          <label class="col-sm-2 col-form-label">Password</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="address_line_3" placeholder="Address Line 3">
+                              <input type="password" class="form-control" name="password" placeholder="Password">
                           </div>
                         </div>
-                          
-                        <div class="form-group row">
-                          <label class="col-sm-2 col-form-label">Select City</label>
-                          <div class="col-sm-10">
-                              <select name="city_id" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
-                                <option value="">Select City</option>
-                                @foreach ($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
-                              </select>
-                          </div>
-                        </div>
+  
                         
                       </div>
                       
@@ -101,6 +78,19 @@
                     <!-- form start -->
                     <form class="form-horizontal">
                       <div class="card-body">
+                          
+                        <div class="form-group row">
+                          <label class="col-sm-2 col-form-label">User Type</label>
+                          <div class="col-sm-10">
+                              <select name="is_admin" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
+                                  <option value="">Select User Type</option>
+                                  <option value="0">User</option>
+                                  <option value="1">Agent</option>
+                                  <option value="2">Superadmin</option>
+                              </select>
+                          </div>
+                        </div>
+                          
                         <div class="form-group row">
                           <label class="col-sm-2 col-form-label">Status</label>
                           <div class="col-sm-10">
@@ -113,13 +103,16 @@
                         </div>
                           
                         <div class="form-group row">
-                          <label class="col-sm-2 col-form-label">Is Default</label>
+                          <label class="col-sm-2 col-form-label">No of Report Generate</label>
                           <div class="col-sm-10">
-                              <select name="is_default" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
-                                  <option value="">Select Is Default</option>
-                                  <option value="0">No</option>
-                                  <option value="1">Yes</option>
-                              </select>
+                              <input type="text" class="form-control" name="no_of_report_generate" placeholder="No of Report Generate">
+                          </div>
+                        </div>
+                          
+                        <div class="form-group row">
+                          <label class="col-sm-2 col-form-label">FCM ID</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="fcm_id" placeholder="FCM ID">
                           </div>
                         </div>
                         
@@ -133,7 +126,7 @@
             <div class="col text-center">
                 
                 <button type="submit" class="btn btn-info">Save</button>&nbsp;
-                  <button type="submit" class="btn btn-default">Cancel</button>
+                 
            
             </div>
             

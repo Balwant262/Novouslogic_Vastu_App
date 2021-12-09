@@ -33,12 +33,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+<!--      <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li>-->
     </ul>
 
     <!-- Right navbar links -->
@@ -63,6 +63,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
           </form>
         </div>
+      </li>
+      <li class="nav-item">
+          <a data-widget="navbar-search" role="button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+              <span>{{ __('Logout') }}</span>
+            </a>
       </li>
 
       
@@ -98,11 +104,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="{{ route('admin.home') }}" class="nav-link">
+            <a href="{{ route('admin.home') }}" class="nav-link {{ Route::is('admin.home') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
           </li>
@@ -116,46 +122,147 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('users.index') }}" class="nav-link">
-                  <i class="fas fa-users nav-icon"></i>
+                <a href="{{ route('users.index') }}" class="nav-link {{ Route::is('users.index') ? 'active' : '' }}">
+                  <i class="fas fa-user-friends nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="{{ route('user_address.index') }}" class="nav-link">
+                <a href="{{ route('user_address.index') }}" class="nav-link {{ Route::is('user_address.index') ? 'active' : '' }}">
                   <i class="fa fa-address-book nav-icon"></i>
                   <p>User Address</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="{{ route('user_address.index') }}" class="nav-link">
+                <a href="{{ route('user_layout.index') }}" class="nav-link {{ Route::is('user_layout.index') ? 'active' : '' }}">
                   <i class="fa fa-home nav-icon"></i>
                   <p>User Home Layout</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="{{ route('user_address.index') }}" class="nav-link">
+                <a href="{{ route('user_appointment.index') }}" class="nav-link {{ Route::is('user_appointment.index') ? 'active' : '' }}">
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>User Appointment</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{ route('user_report.index') }}" class="nav-link {{ Route::is('user_report.index') ? 'active' : '' }}">
+                  <i class="nav-icon fa fa-file"></i>
+                  <p>User Reports</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{ route('user_questionnair_answer.index') }}" class="nav-link {{ Route::is('user_questionnair_answer.index') ? 'active' : '' }}">
+                  <i class="nav-icon fa fa-seedling"></i>
+                  <p>User Questionnair Answer</p>
                 </a>
               </li>
               
             </ul>
           </li>
           
-          
-<!--          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+          <li class="nav-item menu-open">
+            <a href="{{ route('questionnair_questions.index') }}" class="nav-link {{ Route::is('questionnair_questions.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-question"></i>
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+                Questionnair Questions
               </p>
             </a>
-          </li>-->
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="{{ route('zone.index') }}" class="nav-link {{ Route::is('zone.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-globe"></i>
+              <p>
+                Zone
+                
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="{{ route('activity.index') }}" class="nav-link {{ Route::is('activity.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-cubes"></i>
+              <p>
+                Activity
+                
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="{{ route('purpose.index') }}" class="nav-link {{ Route::is('purpose.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Purpose
+                
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="{{ route('attribute.index') }}" class="nav-link {{ Route::is('attribute.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-seedling"></i>
+              <p>
+                Attribute
+                
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="{{ route('direction_attribute.index') }}" class="nav-link {{ Route::is('direction_attribute.index') ? 'active' : '' }}">
+              <i class="nav-icon far fa-compass"></i>
+              <p>
+                Direction & Attribute
+                
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="{{ route('zone_issue.index') }}" class="nav-link {{ Route::is('zone_issue.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                 Zone Activity Issue
+                
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="{{ route('videotips.index') }}" class="nav-link {{ Route::is('videotips.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-video"></i>
+              <p>
+                Videos & Tips
+                
+              </p>
+            </a>
+          </li>
+          
+         <li class="nav-item menu-open">
+            <a href="{{ route('news.index') }}" class="nav-link {{ Route::is('news.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Announcement & News
+                
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="{{ route('social_media_settings.index') }}" class="nav-link {{ Route::is('social_media_settings.index') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>
+                Social Media Settings                
+              </p>
+            </a>
+          </li>
           
           
           
@@ -163,8 +270,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>{{ __('Logout') }}</p>
-              <i class="right fas fa-angle-left"></i>
+              <p>{{ __('Logout') }}
+              
+              </p>
             </a>
                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
@@ -196,7 +304,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2021 <a href="https://novuslogic.in/">NovusLogic</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -229,6 +337,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Page specific script -->
 <!-- Select2 -->
 <script src="{{ asset('admin_style/plugins/select2/js/select2.full.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
 
 <script>
   $(function () {
@@ -253,7 +362,240 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     })
+    
+$('#modalAddnewzone').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+   
+$('#modaleditzone').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var name = button.data('name');
+    var synonym = button.data('synonym');
+    
+    $('#id').val(id);
+    $('#name').val(name);
+    $('#synonym').val(synonym);
+});
+
+$('#modaleditactivity').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var name = button.data('name');
+    
+    $('#id').val(id);
+    $('#name').val(name);
+});
+$('#modalAddnewactivity').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+
+
+$('#modaleditpurpose').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var name = button.data('name');
+    
+    $('#id').val(id);
+    $('#name').val(name);
+});
+$('#modalAddnewpurpose').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+
+$('#modalAddnewattribute').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+$('#modaleditattribute').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var name = button.data('name');
+    var synonym = button.data('description');
+    
+    $('#id').val(id);
+    $('#name').val(name);
+    $('#description').val(synonym);
+});
+
+$('#modalAddnewtips').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+$('#modaledittips').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var name = button.data('name');
+    var description = button.data('description');
+    var source_link = button.data('source');
+    
+    $('#id').val(id);
+    $('#name').val(name);
+    $('#description').val(description);
+    $('#source_link').val(source_link);
+});
+
+$('#modalAddnewnews').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+$('#modaleditnews').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var name = button.data('name');
+    var description = button.data('description');
+    var source_link = button.data('source');
+    
+    $('#id').val(id);
+    $('#name').val(name);
+    $('#description').val(description);
+    $('#source_link').val(source_link);
+});
+
+$('#modalAddnewdirection_attribute').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+$('#modaleditdirection_attribute').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var attribute_id = button.data('attribute_id');
+    var zone_id = button.data('zone_id');
+    
+    $('#id').val(id);
+    $('#zone_id').val(zone_id).trigger('change');
+    $('#attribute_id').val(attribute_id).trigger('change');
+});
+
+
+$('#modalAddnewzone_issue').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+$('#modaleditzone_issue').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var activity_id = button.data('activity_id');
+    var zone_id = button.data('zone_id');
+    var purpose_id = button.data('purpose_id');
+    var issue_facing = button.data('issue_facing');
+    
+    $('#id').val(id);
+    $('#zone_id').val(zone_id).trigger('change');
+    $('#activity_id').val(activity_id).trigger('change');
+    $('#purpose_id').val(purpose_id).trigger('change');
+    $('#issue_facing').val(issue_facing);
+});
+
+
+$('#modalAddnewuser_appointment').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+$('#modaledituser_appointment').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var user_id = button.data('user_id');
+    var appointment_datetime = button.data('appointment_datetime');
+    var assigned_agent_id = button.data('assigned_agent_id');
+    var status = button.data('status');
+    var remarks = button.data('remarks');
+    
+    const d = new Date(appointment_datetime);
+    console.log(d.toISOString().substr(0,16));
+    let text = d.toISOString().substr(0,16);
+    
+    
+    $('#id').val(id);
+    $('#user_id').val(user_id).trigger('change');
+    $('#assigned_agent_id').val(assigned_agent_id).trigger('change');
+    $('#status').val(status).trigger('change');
+    $('#appointment_datetime').val(text);
+    $('#remarks').val(remarks);
+});
+
+$('#modalAddnewuser_layout').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+$('#modaledituser_layout').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var user_id = button.data('user_id');
+    var address_id = button.data('address_id');
+    var zone_id = button.data('zone_id');
+    var activity_id = button.data('activity_id');
+
+    $('#id').val(id);
+    $('#user_id').val(user_id).trigger('change');
+    $('#address_id').val(address_id).trigger('change');
+    $('#zone_id').val(zone_id).trigger('change');
+    $('#activity_id').val(activity_id).trigger('change');
+});
+
+$('#modalAddnewuser_report').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+$('#modaledituser_report').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var user_id = button.data('user_id');
+    var address_id = button.data('address_id');
+    
+    $('#id').val(id);
+    $('#user_id').val(user_id).trigger('change');
+    $('#address_id').val(address_id).trigger('change');
+    
+});
+
+
+$('#modalAddnewsocial').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+   
+$('#modaleditsocial').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var main = button.data('main');
+    var youtube = button.data('youtube');
+    var insta = button.data('insta');
+    var tweet = button.data('tweet');
+    var facebook = button.data('facebook');
+    var linkedin = button.data('linkedin');
+    
+    $('#id').val(id);
+    $('#main').val(main);
+    $('#youtube').val(youtube);
+    $('#insta').val(insta);
+    $('#tweet').val(tweet);
+    $('#facebook').val(facebook);
+    $('#linkedin').val(linkedin);
+});
+
+$('#modaleditquestions').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var name = button.data('name');
+       
+    $('#id').val(id);
+    $('#question').val(name);
+    
+});
+
+
+$('#modalAddnewanswer').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+});
+   
+$('#modaleditanswer').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal   
+    var id = button.data('id');
+    var answer = button.data('answer');
+    var question_id = button.data('question_id');
+    var user_id = button.data('user_id');
+   
+    $('#id').val(id);
+    $('#answer').val(answer);
+    $('#question_id').val(question_id).trigger('change');
+    $('#user_id').val(user_id).trigger('change');
+    
+});
 </script>
+
+
 </body>
 </html>
 

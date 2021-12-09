@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserAddress;
 use App\Models\User;
+use App\Models\Cities;
 use Illuminate\Http\Request;
 
 class UserAddressController extends Controller
@@ -27,7 +28,7 @@ class UserAddressController extends Controller
     public function create()
     {
         $users = User::all();
-        $cities = User::all();
+        $cities = Cities::all();
         return view('admin.user_address.create', compact('users','cities'));
     }
 
@@ -73,7 +74,7 @@ class UserAddressController extends Controller
     public function edit(UserAddress $userAddress)
     {
         $users = User::all();
-        $cities = User::all();
+        $cities = Cities::all();
         return view('admin.user_address.edit', compact('userAddress','users','cities'));
     }
 
@@ -110,7 +111,6 @@ class UserAddressController extends Controller
     {
         $userAddress->delete();
         
-        return redirect()->route('user_address.index')
-            ->with('success', 'User Address deleted successfully');
+        return redirect()->route('user_address.index')->with('success', 'User Address deleted successfully');
     }
 }

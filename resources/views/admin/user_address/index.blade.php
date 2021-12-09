@@ -5,8 +5,8 @@
     <div class="card-header">
       <h3 class="card-title"><i class="fas fa-users"></i> User Address</h3>
         <div class="card-tools">
-            <a class="btn btn-success btn-sm" href="{{ route('user_address.create') }}" title="Create a User Address"> 
-                <i class="fas fa-plus-circle"></i> Create a User Address
+            <a class="btn btn-success btn-sm" href="{{ route('user_address.create') }}" title="Add User Address"> 
+                <i class="fas fa-plus-circle"></i> Add User Address
             </a>    
         </div>
     </div>

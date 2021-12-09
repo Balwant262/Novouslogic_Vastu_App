@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'email',
@@ -24,7 +25,9 @@ class User extends Authenticatable
         'is_admin',
         'contact_number',
         'address',
-        'status'
+        'status',
+        'no_of_report_generate',
+        'fcm_id'
     ];
 
     /**
