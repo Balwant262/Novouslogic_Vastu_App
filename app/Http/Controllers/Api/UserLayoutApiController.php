@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\UserLayout;
 use App\Models\ZoneIssue;
-use App\Models\User;
+use App\Models\Zone;
+use App\Models\Activity;
 use PDF;
 
 
@@ -31,6 +32,42 @@ class UserLayoutApiController extends BaseController
         return $this->sendResponse($user_layout, 'User Layout Found Successfully');
     }
     
+    public function save_user_layout(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'address_id' => 'required',
+            'zone_synonym' => 'required',
+            'activity_name' => 'required',
+        ]);
+        
+        try{
+            $synonym = $request->zone_synonym;
+            $activity_name = $request->activity_name;
+            //UserLayout::create($request->all());
+            $zone_id = Zone::where('synonym', '=', $synonym)->select('id')->first(); 
+            $activity_id = Activity::where('activity_name', '=', $activity_name)->select('id')->first();
+            
+            if($zone_id === null || $activity_id === null ){
+                return $this->sendError('Error', 'Zone or Activity Not Found');
+            }
+            
+            $layout = new UserLayout([
+                    'user_id' => $request->user_id,
+                    'address_id' => $request->address_id,
+                    'zone_id' => $zone_id->id,
+                    'activity_id' => $activity_id->id
+            ]);
+            $layout->save();
+            
+            
+            
+            
+        } catch (\Exception $e) {
+            return $this->sendError('Error', 'User Layout Not Save....please try again later');
+        }
+        return $this->sendResponse('success', 'User Layout Save successfully.');
+    }
     
     public function generate_user_report(Request $request)
     {

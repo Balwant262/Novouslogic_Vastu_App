@@ -118,6 +118,7 @@ class RegisterController extends BaseController
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('VaastuApp')->plainTextToken; 
             $success['name'] =  $user->name;
+            $success['user_id'] =  $user->id;
    
             return $this->sendResponse($success, 'User login successfully.');
         } 

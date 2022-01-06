@@ -18,6 +18,7 @@ use App\Http\Controllers\API\ZoneIssueApiController;
 use App\Http\Controllers\API\SocialMediaSettingsApiController;
 use App\Http\Controllers\API\QuestionnairQuestionsApiController;
 use App\Http\Controllers\API\QuestionnairAnswerApiController;
+use App\Http\Controllers\API\MasterApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,18 +39,21 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/profile', function(Request $request) {
         return auth()->user();
     });
-    
+    Route::post('/get_all_cities', [MasterApiController::class, 'get_all_cities']);
     Route::post('/get_activity', [ActivityApiController::class, 'get_activity']);
     Route::post('/get_attribute', [AttributeApiController::class, 'get_attribute']);
     Route::post('/get_direction_attribute', [DirectionAttributeApiController::class, 'get_direction_attribute']);
     Route::post('/get_news', [NewsApiController::class, 'get_news']);
     Route::post('/get_purpose', [PurposeApiController::class, 'get_purpose']);
     Route::post('/get_user_address', [UserAddressApiController::class, 'get_user_address']);
+    Route::post('/add_user_address', [UserAddressApiController::class, 'add_user_address']);
+    Route::post('/update_user_address', [UserAddressApiController::class, 'update_user_address']);
     Route::post('/get_user_appointment', [UserAppointmentApiController::class, 'get_user_appointment']);
     Route::post('/book_user_appointment', [UserAppointmentApiController::class, 'book_user_appointment']);
     Route::post('/generate_user_report', [UserLayoutApiController::class, 'generate_user_report']);
     Route::post('/get_all_user_generated_report', [UserLayoutApiController::class, 'get_all_user_generated_report']);
     Route::post('/get_user_layout', [UserLayoutApiController::class, 'get_user_layout']);
+    Route::post('/save_user_layout', [UserLayoutApiController::class, 'save_user_layout']);
     Route::post('/get_video_tips', [VideoTipsApiController::class, 'get_video_tips']);
     Route::post('/get_zone', [ZoneApiController::class, 'get_zone']);
     Route::post('/get_zone_issue', [ZoneIssueApiController::class, 'get_zone_issue']);
