@@ -26,13 +26,14 @@
         <thead>
         <tr>
           <th>User Name</th>
-          <th>Address Name</th>
-          <th>Address Line 1</th>
+          <th>Property Name</th>
+          <th>Property Type</th>
+<!--          <th>Address Line 1</th>
           <th>Address Line 2</th>
           <th>Address Line 3</th>
-          <th>City Name</th>
-          <th>Is Derault</th>
+          <th>City Name</th>-->
           <th>Status</th>
+          <th>Is Derault</th>
           <th>Action</th>
         </tr>
         </thead>
@@ -41,10 +42,11 @@
             <tr>
                 <td>{{ $addrs->name }}</td>
                 <td>{{ $addrs->address_name }}</td>
-                <td>{{ $addrs->address_line_1 }}</td>
+                <td>{{ $addrs->address_type }}</td>
+<!--                <td>{{ $addrs->address_line_1 }}</td>
                 <td>{{ $addrs->address_line_2 }}</td>
                 <td>{{ $addrs->address_line_3 }}</td>
-                <td>{{ $addrs->city_name }}</td>
+                <td>{{ $addrs->city_name }}</td>-->
                 <td><?php if($addrs->status == 1) echo '<b style="color:green;">Active<b>'; else echo '<b style="color:red;">Deactive<b>'; ?></td>
                 <td><?php if($addrs->is_default == 1) echo '<b style="color:green;">Yes<b>'; else echo '<b style="color:red;">No<b>'; ?></td>
                 <td>

@@ -16,9 +16,16 @@ use App\Models\QuestionnairQuestion;
 class QuestionnairQuestionsApiController extends BaseController
 {
    
-    public function get_question(Request $request)
+    public function get_all_questions(Request $request)
     {
-        $activity = QuestionnairQuestion::all();
+        $request->validate([
+            'user_id' => 'required',
+            'address_id' => 'required',
+        ]);
+        
+        $activity = QuestionnairQuestion::leftJoin('questionnair_answers', 'questionnair_answers.question_id', '=', 'questionnair_questions.id')
+                ->where('questionnair_answers.user_id', $request->user_id)
+                ->get(['questionnair_answers.answer', 'questionnair_questions.*']);
         return $this->sendResponse($activity, 'Questionnair Questions Found Successfully');
     }
     

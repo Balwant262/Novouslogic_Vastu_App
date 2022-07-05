@@ -50,6 +50,23 @@ class UserAppointmentController extends Controller
         ]);
 
         UserAppointment::create($request->all());
+        
+        $user = User::where('id', '=', $request->user_id)->first();
+        $datetime = date('d-m-Y | h:m', strtotime($request->appointment_datetime));
+        dd($user->email);
+        $to = $user->email;
+        $subject = "Appointment Booked Successfully";
+
+        $message = "<b>Appointment Booked Successfully.</b><br/>";
+        $message .= "<h1>Appointment DateTime: ".$datetime."</h1><br/>";
+        
+
+        $header = "From:pavan.patil@taxivaxi.com \r\n";
+        $header .= "Cc:balwant@taxivaxi.com \r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+        $header .= "Content-type: text/html\r\n";
+
+        $retval = mail ($to,$subject, $message, $header);
 
         return redirect()->route('user_appointment.index')->with('success', 'User Appointment created successfully.');
     }

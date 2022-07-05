@@ -4,21 +4,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\RegisterController;
-use App\Http\Controllers\API\ActivityApiController;
-use App\Http\Controllers\API\AttributeApiController;
-use App\Http\Controllers\API\DirectionAttributeApiController;
-use App\Http\Controllers\API\NewsApiController;
-use App\Http\Controllers\API\PurposeApiController;
-use App\Http\Controllers\API\UserAddressApiController;
-use App\Http\Controllers\API\UserAppointmentApiController;
-use App\Http\Controllers\API\UserLayoutApiController;
-use App\Http\Controllers\API\VideoTipsApiController;
-use App\Http\Controllers\API\ZoneApiController;
-use App\Http\Controllers\API\ZoneIssueApiController;
-use App\Http\Controllers\API\SocialMediaSettingsApiController;
-use App\Http\Controllers\API\QuestionnairQuestionsApiController;
-use App\Http\Controllers\API\QuestionnairAnswerApiController;
-use App\Http\Controllers\API\MasterApiController;
+use App\Http\Controllers\Api\ActivityApiController;
+use App\Http\Controllers\Api\AttributeApiController;
+use App\Http\Controllers\Api\DirectionAttributeApiController;
+use App\Http\Controllers\Api\NewsApiController;
+use App\Http\Controllers\Api\PurposeApiController;
+use App\Http\Controllers\Api\UserAddressApiController;
+use App\Http\Controllers\Api\UserAppointmentApiController;
+use App\Http\Controllers\Api\UserLayoutApiController;
+use App\Http\Controllers\Api\VideoTipsApiController;
+use App\Http\Controllers\Api\ZoneApiController;
+use App\Http\Controllers\Api\ZoneIssueApiController;
+use App\Http\Controllers\Api\SocialMediaSettingsApiController;
+use App\Http\Controllers\Api\QuestionnairQuestionsApiController;
+use App\Http\Controllers\Api\QuestionnairAnswerApiController;
+use App\Http\Controllers\Api\MasterApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/generate_user_report', [UserLayoutApiController::class, 'generate_user_report']);
     Route::post('/get_all_user_generated_report', [UserLayoutApiController::class, 'get_all_user_generated_report']);
     Route::post('/get_user_layout', [UserLayoutApiController::class, 'get_user_layout']);
+    Route::post('/remove_user_layout', [UserLayoutApiController::class, 'remove_user_layout']);
     Route::post('/save_user_layout', [UserLayoutApiController::class, 'save_user_layout']);
     Route::post('/get_video_tips', [VideoTipsApiController::class, 'get_video_tips']);
     Route::post('/get_zone', [ZoneApiController::class, 'get_zone']);
@@ -61,9 +62,18 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/get_all_questions', [QuestionnairQuestionsApiController::class, 'get_all_questions']);
     Route::post('/get_user_answers', [QuestionnairAnswerApiController::class, 'get_user_answers']);
     Route::post('/save_user_answers', [QuestionnairAnswerApiController::class, 'save_user_answers']);
+    Route::post('/check_user_answers', [QuestionnairAnswerApiController::class, 'check_user_answers']);
+    
+    Route::post('/set_default_user_address', [UserAddressApiController::class, 'set_default_user_address']);
+    Route::post('/reset_user_layout', [UserLayoutApiController::class, 'reset_user_layout']);
     
     // API route for logout user
     Route::post('/logout', [RegisterController::class, 'logout']);
+});
+
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Api Not Found'], 404);
 });
 
 //Route::middleware('auth:sanctum')->post('/user', function (Request $request) {

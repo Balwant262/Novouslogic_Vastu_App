@@ -45,16 +45,23 @@
                           
                         
                         <div class="form-group row">
-                          <label class="col-sm-2 col-form-label">Address Name</label>
+                          <label class="col-sm-2 col-form-label">Property Name</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="address_name" value="{{ $userAddress->address_name }}" placeholder="Address Name">
+                            <input type="text" class="form-control" name="address_name" value="{{ $userAddress->address_name }}" placeholder="Property Name">
                           </div>
                         </div>
                           
                         <div class="form-group row">
+                          <label class="col-sm-2 col-form-label">Property Type</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="address_type" value="{{ $userAddress->address_type }}" placeholder="Property Type">
+                          </div>
+                        </div>
+                          
+<!--                          <div class="form-group row">
                           <label class="col-sm-2 col-form-label">Address Line 1</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="address_line_1" value="{{ $userAddress->address_line_1 }}" placeholder="Email">
+                              <input type="text" class="form-control" name="address_line_2" value="{{ $userAddress->address_line_1 }}" placeholder="Address Line 1">
                           </div>
                         </div>
                           
@@ -82,7 +89,7 @@
                                 @endforeach
                               </select>
                           </div>
-                        </div>
+                        </div>-->
                         
                       </div>
                       

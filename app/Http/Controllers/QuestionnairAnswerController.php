@@ -13,6 +13,7 @@ class QuestionnairAnswerController extends Controller
     {
         $anss = QuestionnairAnswer::leftjoin('users', 'users.id', '=', 'questionnair_answers.user_id')
                 ->leftjoin('questionnair_questions', 'questionnair_questions.id', '=', 'questionnair_answers.question_id')
+                ->orderByDesc('questionnair_answers.created_at')
                 ->get(['questionnair_answers.*', 'users.name', 'questionnair_questions.question']);
         
         $users = User::all();

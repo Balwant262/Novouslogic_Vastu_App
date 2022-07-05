@@ -11,6 +11,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\UserAppointment;
+use App\Models\User;
 
 class UserAppointmentApiController extends BaseController
 {
@@ -34,10 +35,28 @@ class UserAppointmentApiController extends BaseController
 
         try{
             UserAppointment::create($request->all());
+            
+            $user = User::where('id', '=', $request->user_id)->first();
+            $datetime = date('d-m-Y | h:m', strtotime($request->appointment_datetime));
+            
+            $to = $user->email;
+            $subject = "Appointment Booked Successfully";
+
+            $message = "<b>Appointment Booked Successfully.</b><br>";
+            $message .= "<h1>Appointment DateTime: ".$datetime."</h1><br>";
+
+            $header = "From:pavan.patil@taxivaxi.com \r\n";
+            $header .= "Cc:balwant@taxivaxi.com \r\n";
+            $header .= "MIME-Version: 1.0\r\n";
+            $header .= "Content-type: text/html\r\n";
+
+            $retval = mail ($to,$subject, $message, $header);
+            
+            
         } catch (\Exception $e) {
             return $this->sendError('Error', 'Appointment Not Booking....please try again later');
         }
-        return $this->sendResponse('success', 'User Appointment Booked successfully.');
+        return $this->sendResponse('success', 'User Appointment Booked Successfully.');
     }
     
     

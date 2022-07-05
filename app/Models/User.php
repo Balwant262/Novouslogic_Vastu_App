@@ -27,7 +27,8 @@ class User extends Authenticatable
         'address',
         'status',
         'no_of_report_generate',
-        'fcm_id'
+        'fcm_id',
+        'is_questionnair_fill'
     ];
 
     /**

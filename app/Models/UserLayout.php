@@ -16,6 +16,10 @@ class UserLayout extends Model
         'user_id',
         'address_id',
         'zone_id',
-        'activity_id'
+        'activity_id',
+        'direction_degree',
+        'grid_id',
+        'grid_distance',
+        'is_report_generate'
     ];
 }

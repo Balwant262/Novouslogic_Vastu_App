@@ -17,7 +17,7 @@ class UserAddressAgentController extends Controller
      */
     public function index()
     {
-        $user_address = UserAddress::join('users', 'users.id', '=', 'user_address.user_id')->join('cities', 'cities.id', '=', 'user_address.city_id')->get(['user_address.*', 'users.name', 'cities.name as city_name']);
+        $user_address = UserAddress::join('users', 'users.id', '=', 'user_address.user_id')->get(['user_address.*', 'users.name']);
         return view('agent.user_address.index', compact('user_address'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -44,15 +44,15 @@ class UserAddressAgentController extends Controller
         $request->validate([
             'user_id' => 'required',
             'address_name' => 'required',
-            'address_line_1' => 'required',
-            'city_id' => 'required',
+            'address_type' => 'required',
+            
             'status' => 'required',
             'is_default' => 'required',
         ]);
 
         UserAddress::create($request->all());
 
-        return redirect()->route('user_address.index')->with('success', 'User Address created successfully.');
+        return redirect()->route('user_address.index')->with('success', 'User Property created successfully.');
     }
 
     /**
@@ -91,15 +91,14 @@ class UserAddressAgentController extends Controller
         $request->validate([
             'user_id' => 'required',
             'address_name' => 'required',
-            'address_line_1' => 'required',
-            'city_id' => 'required',
+            'address_type' => 'required',
             'status' => 'required',
             'is_default' => 'required',
         ]);
         
         $userAddress->update($request->all());
 
-        return redirect()->route('user_address.index')->with('success', 'User Address updated successfully');
+        return redirect()->route('user_address.index')->with('success', 'User Property updated successfully');
     }
 
     /**
@@ -112,6 +111,6 @@ class UserAddressAgentController extends Controller
     {
         $userAddress->delete();
         
-        return redirect()->route('user_address.index')->with('success', 'User Address deleted successfully');
+        return redirect()->route('user_address.index')->with('success', 'User Property deleted successfully');
     }
 }

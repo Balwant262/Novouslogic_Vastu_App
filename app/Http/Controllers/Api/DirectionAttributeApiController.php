@@ -20,7 +20,7 @@ class DirectionAttributeApiController extends BaseController
     {
         $attribute = DirectionAttribute::join('attributes', 'attributes.id', '=', 'directions_and_attributes.attribute_id')
                 ->join('zone', 'zone.id', '=', 'directions_and_attributes.zone_id')
-                ->get(['directions_and_attributes.*', 'attributes.name as attribute_name', 'zone.direction_name']);
+                ->get(['directions_and_attributes.*', 'attributes.name as attribute_name', 'zone.direction_name', 'zone.synonym as direction_synonym']);
         return $this->sendResponse($attribute, 'Activity Found Successfully');
     }
     
